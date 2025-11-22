@@ -1,33 +1,65 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+// app/(tabs)/_layout.tsx
+// Layout de navegación por tabs de Receta Segura
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
+import { Tabs } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: Colors.primary,
+        tabBarInactiveTintColor: Colors.textLight,
         headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
+        tabBarStyle: {
+          backgroundColor: Colors.backgroundLight,
+          borderTopColor: Colors.border,
+          borderTopWidth: 1,
+          paddingTop: 8,
+          paddingBottom: 8,
+          height: 60,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: '600',
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: 'Inicio',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" size={size || 24} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="treatments"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Tratamientos',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="medical" size={size || 24} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="history"
+        options={{
+          title: 'Historial',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="time" size={size || 24} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="caregiver"
+        options={{
+          title: 'Cuidador',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="people" size={size || 24} color={color} />
+          ),
         }}
       />
     </Tabs>
