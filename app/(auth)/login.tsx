@@ -2,6 +2,7 @@
 // Pantalla de inicio de sesión (simulada - sin backend)
 
 import React, { useState } from 'react';
+
 import {
   View,
   Text,
@@ -59,14 +60,14 @@ export default function LoginScreen() {
       try {
         // En un caso real, aquí validarías contra un backend
         // Por ahora, aceptamos cualquier email/contraseña válida
-        
+
         // Verificar si hay datos, si no, generar datos de prueba
         const hasData = await SeedDataService.hasData();
         if (!hasData) {
           console.log('📦 Generando datos de prueba...');
           await SeedDataService.seedAll();
         }
-        
+
         // Marcar onboarding como completado
         await StorageService.completeOnboarding();
 
@@ -102,7 +103,7 @@ export default function LoginScreen() {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <StatusBar barStyle="dark-content" backgroundColor={Colors.background} />
-      
+
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
